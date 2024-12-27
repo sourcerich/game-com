@@ -1,7 +1,7 @@
 import express from "express";
 import bodyParser from "body-parser";
 import dotenv from "dotenv";
-import { db } from "./config/index";
+import { db } from "./config/db";
 import { customer } from "./modules/customer/route/customer.route";
 import { Address } from "./modules/Address/route/address.route";
 
