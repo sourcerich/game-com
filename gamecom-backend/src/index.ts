@@ -2,8 +2,6 @@ import express from "express";
 import bodyParser from "body-parser";
 import dotenv from "dotenv";
 import { db } from "./config/db";
-import { customer } from "./modules/customer/route/customer.route";
-import { Address } from "./modules/Address/route/address.route";
 
 dotenv.config();
 const app = express();
@@ -21,8 +19,6 @@ app.use(express.json());
     console.error(err);
   }
 })();
-app.use("/address", Address);
-app.use("/customer", customer);
 app.get("/customer", (req, res) => {
   res.status(200).type("txt").send("Hello from Customer Management");
 });
