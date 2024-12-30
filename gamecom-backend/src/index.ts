@@ -18,11 +18,23 @@ app.use(express.json());
   }
 })();
 
-app.get("/user", (req, res) => {
-  res.status(200).type("txt").send("Hello from User Management");
+app.get("/order", (req, res) => {
+  res.status(200).type("txt").send("Welcome to Order Management");
+});
+app.get("/product", (req, res) => {
+  res.status(200).type("txt").send("Welcome to Product Management");
+});
+app.get("/review", (req, res) => {
+  res.status(200).type("txt").send("Welcome to Reviews");
+});
+app.get("/role", (req, res) => {
+  res.status(200).type("txt").send("Welcome to Role Management");
+});
+app.get("/transaction", (req, res) => {
+  res.status(200).type("txt").send("Welcome to Transaction Management");
 });
 app.get("/user", (req, res) => {
-  res.status(200).type("txt").send("Hello from User Management");
+  res.status(200).type("txt").send("Welcome to User Management");
 });
 process.on("uncaughtException", function (error, origin) {
   console.log("global error handled");
@@ -30,7 +42,7 @@ process.on("uncaughtException", function (error, origin) {
 });
 
 app.listen(port, () => {
-  console.log(`User management is up and listening on port ${port}`);
+  console.log(`Gamecom is up and listening on port ${port}`);
 });
 
 function shutdown(signal: string | number | undefined) {

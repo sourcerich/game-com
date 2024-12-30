@@ -23,15 +23,73 @@ export const sequelizeDB = new Sequelize(
   },
 );
 
-import { Address } from "..//modules/Address/model/address.model";
-import { Consignee } from "..//modules/Address/model/consignee.model";
-import { Customer } from "..//modules/customer/model/customer.model";
-Address.hasMany(Consignee, {
-  foreignKey: "addressId",
+import { Categories } from "../modules/products/models/category.model";
+import { Orders } from "../modules/orders/models/order.model";
+import { ProductCategories } from "../modules/products/models/productCategory.model";
+import { Products } from "../modules/products/models/product.model";
+import { Reviews } from "../modules/reviews/models/review.model";
+import { Roles } from "../modules/roles/models/role.model";
+import { TransactionMethods } from "../modules/orders/models/transactionMethod.model";
+import { Transactions } from "../modules/orders/models/transaction.model";
+import { Users } from "../modules/users/models/user.model";
+
+//Orders
+Users.hasMany(Orders, {
+  foreignKey: "customerId",
   sourceKey: "id",
 });
-Customer.hasMany(Address, {
-  foreignKey: "customerId",
+Products.hasMany(Orders, {
+  foreignKey: "productId",
+  sourceKey: "id",
+});
+Transactions.hasMany(Orders, {
+  foreignKey: "transactionId",
+  sourceKey: "id",
+});
+
+//Product Categories
+Products.hasMany(ProductCategories, {
+  foreignKey: "productId",
+  sourceKey: "id",
+});
+Categories.hasMany(ProductCategories, {
+  foreignKey: "categoryId",
+  sourceKey: "id",
+});
+
+//Products
+Users.hasMany(Products, {
+  foreignKey: "sellerId",
+  sourceKey: "id",
+});
+Categories.hasMany(Products, {
+  foreignKey: "categoryId",
+  sourceKey: "id"
+});
+
+//Reviews
+Users.hasMany(Reviews, {
+  foreignKey: "userId",
+  sourceKey: "id", 
+});
+Products.hasMany(Reviews, {
+  foreignKey: "productId",
+  sourceKey: "id",
+});
+
+//Transactions
+Users.hasMany(Transactions, {
+  foreignKey: "userId",
+  sourceKey: "id",
+});
+TransactionMethods.hasMany(Transactions, {
+  foreignKey: "methodId",
+  sourceKey: "id",
+});
+
+//Users
+Roles.hasMany(Users, {
+  foreignKey: "roleId",
   sourceKey: "id",
 });
 
@@ -39,7 +97,13 @@ export const db = {
   sequelizeDB,
   Sequelize,
   Global_table: global,
-  Address,
-  Customer,
-  Consignee,
+  Categories,
+  Orders,
+  ProductCategories,
+  Products,
+  Reviews,
+  Roles,
+  TransactionMethods,
+  Transactions,
+  Users,
 };
