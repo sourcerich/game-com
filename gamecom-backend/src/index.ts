@@ -9,8 +9,6 @@ const port = process.env.PORT ?? 8080;
 app.use(bodyParser.json());
 app.use(express.json());
 
-// Use routers
-
 (async () => {
   try {
     await db.sequelizeDB.sync();
@@ -19,8 +17,12 @@ app.use(express.json());
     console.error(err);
   }
 })();
-app.get("/customer", (req, res) => {
-  res.status(200).type("txt").send("Hello from Customer Management");
+
+app.get("/user", (req, res) => {
+  res.status(200).type("txt").send("Hello from User Management");
+});
+app.get("/user", (req, res) => {
+  res.status(200).type("txt").send("Hello from User Management");
 });
 process.on("uncaughtException", function (error, origin) {
   console.log("global error handled");
@@ -28,7 +30,7 @@ process.on("uncaughtException", function (error, origin) {
 });
 
 app.listen(port, () => {
-  console.log(`Customer management is up and listening on port ${port}`);
+  console.log(`User management is up and listening on port ${port}`);
 });
 
 function shutdown(signal: string | number | undefined) {
